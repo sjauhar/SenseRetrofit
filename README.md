@@ -5,13 +5,15 @@ Use this tool for retrofitting any word vector model to a sense ontology in orde
 ## Requirements
 
 1. Python 2.7
+	
 	a. numpy
+	
 	b. scipy
 	
 ## Data
 
 #### Word Vectors
-A file containing a pre-trained word vector model. The first line must specify the dimensions of the vector space model, after which one word vector per line is given. See ```data/samplevec.txt.gz```` for an example.
+A file containing a pre-trained word vector model. The first line must specify the dimensions of the vector space model, after which one word vector per line is given. See ```data/samplevec.txt.gz``` for an example.
 
 The output word vectors are in exactly the same format. For both, plain text and gzipped files are acceptable.
 
@@ -24,7 +26,7 @@ The first weight, corresponding to the word sense itself, is the sense agnostic 
 
 Two special characters must be chosen to denote a sense-separator and a value-separator. The former specifies a demarcator between a word's surface form and sense ID, while the latter does the same for a word sense unit and weight. Currently the two are set to ```%``` and ```#``` respectively. If you decide to use different values you must change the two corresponding global variables, ```senseSeparator``` and ```valueSeparator``` in the code of ```senseretrofit.py```.
 
-For an example see ```data/sampleonto.txt.gz````, which contains a formatted version of the ontological graph of Wordnet 3.0, with the synonyms, hypernyms and hyponyms of all the word senses (except multi-word expressions).
+For an example see ```data/sampleonto.txt.gz```, which contains a formatted version of the ontological graph of Wordnet 3.0, with the synonyms, hypernyms and hyponyms of all the word senses (except multi-word expressions).
 
 ## Running the code
 ```
