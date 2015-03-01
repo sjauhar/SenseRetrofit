@@ -28,6 +28,7 @@ $ python senseretrofit.py -v <vectorsFile> -q <ontologyFile> [-o outputFile] [-n
 senseSeparator = '%'
 valueSeparator = '#'
 
+
 class Usage(Exception):
     def __init__(self, msg):
         self.msg = msg
@@ -214,6 +215,7 @@ def retrofit(wordVectors, vectorDim, senseVocab, ontologyAdjacency, numIters, ep
     newSenseVectors.update({k+senseSeparator+'0:00:00::':wordVectors[k] for k in wordVectors
                             if k not in ontologyWords})
     
+    # create a copy of the sense vectors to check for convergence
     oldSenseVectors = deepcopy(newSenseVectors)
     
     # run for a maximum number of iterations
@@ -245,8 +247,7 @@ def retrofit(wordVectors, vectorDim, senseVocab, ontologyAdjacency, numIters, ep
         sys.stderr.write('Max vector differential is '+str(diffScore)+'\n')
         if diffScore <= epsilon:
             break
-        oldSenseVectors = deepcopy(newSenseVectors)
-        
+        oldSenseVectors = deepcopy(newSenseVectors)       
     
     sys.stderr.write('Finished running retrofitting.\n')
     
@@ -254,9 +255,9 @@ def retrofit(wordVectors, vectorDim, senseVocab, ontologyAdjacency, numIters, ep
     
 
 if __name__ == "__main__":
-    #parse command line input
+    # parse command line input
     commandParse = readCommandLineInput(sys.argv)  
-    #failed command line input
+    # failed command line input
     if commandParse==2:
         sys.exit(2)
     
@@ -269,7 +270,9 @@ if __name__ == "__main__":
     except:
         print "ERROR opening files. One of the paths or formats of the specified files was incorrect."
         sys.exit(2)
-        
+    
+    # run retrofitting and write to output file   
     writeWordVectors(retrofit(vectors, vectorDim, senseVocab, ontologyAdjacency, numIters, epsilon),
                      vectorDim, commandParse[2])
+    
     sys.stderr.write('All done!\n')
