@@ -87,7 +87,7 @@ def readCommandLineInput(argv):
         return 2
 
 
-''' Read all the word vectors and normalize them.'''
+''' Read all the word vectors from file.'''
 def readWordVectors(filename):
     sys.stderr.write('Reading vectors from file...\n')
     

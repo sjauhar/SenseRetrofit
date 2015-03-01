@@ -4,10 +4,8 @@ Use this tool for retrofitting any word vector model to a sense ontology in orde
 
 ## Requirements
 
-1. Python 2.7
-	
-	a. numpy
-	
+1. Python 2.7  
+	a. numpy  
 	b. scipy
 	
 ## Data
