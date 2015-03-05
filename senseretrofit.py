@@ -98,7 +98,7 @@ def readWordVectors(filename):
         fileObject = open(filename, 'r')
     
     vectorDim = int(fileObject.readline().strip().split()[1])
-    vectors = numpy.loadtxt(filename, dtype=float, skiprows=1, usecols=range(1,vectorDim+1))
+    vectors = numpy.loadtxt(filename, dtype=float, comments=None, skiprows=1, usecols=range(1,vectorDim+1))
     
     wordVectors = {}
     lineNum = 0
